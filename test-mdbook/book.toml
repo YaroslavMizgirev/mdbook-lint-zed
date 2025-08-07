@@ -1,0 +1,6 @@
+[book]
+title = "Test mdBook for Extension"
+authors = ["Test Author"]
+language = "en"
+multilingual = false
+src = "src"
