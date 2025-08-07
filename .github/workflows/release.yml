@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: wasm32-wasip1
+    
+    - name: Cache dependencies
+      uses: Swatinem/rust-cache@v2
+    
+    - name: Build WebAssembly (release)
+      run: cargo build --target wasm32-wasip1 --release
+    
+    - name: Create release archive
+      run: |
+        mkdir -p release
+        cp target/wasm32-wasip1/release/mdbook_lint_zed.wasm release/
+        cp extension.toml release/
+        cp README.md release/
+        cp LICENSE release/
+        tar -czf mdbook-lint-zed-${{ github.ref_name }}.tar.gz -C release .
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          mdbook-lint-zed-${{ github.ref_name }}.tar.gz
+          target/wasm32-wasip1/release/mdbook_lint_zed.wasm
+        generate_release_notes: true
+        draft: false
+        prerelease: false
