@@ -1,0 +1,17 @@
+# Rust
+target/
+Cargo.lock
+
+# Zed extension
+*.wasm
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
