@@ -5,10 +5,12 @@ A Zed editor extension that provides real-time markdown linting for mdBook proje
 ## Features
 
 - **Real-time markdown linting**: Get instant feedback on markdown issues as you type
-- **mdBook-specific rules**: Enhanced linting for mdBook projects including SUMMARY.md validation and cross-reference checking
-- **Standard markdown rules**: Comprehensive support for 59 standard markdown rules (MD001-MD059)
+- **80+ linting rules**: Comprehensive coverage including standard markdown, mdBook-specific, and content quality rules
+- **mdBook-specific rules**: Enhanced linting for mdBook projects including SUMMARY.md validation, cross-reference checking, and include file validation
+- **Content quality rules**: Detect TODOs, placeholder text, inconsistent terminology, and more
 - **Automatic project detection**: Automatically detects mdBook projects and enables enhanced features
 - **Configuration support**: Respects mdbook-lint configuration files in your project
+- **Auto-fix support**: Many rules support automatic fixes
 
 ## Installation
 
@@ -80,15 +82,17 @@ markdownlint_compatible = false
 
 ## Rules
 
-The extension supports all mdbook-lint rules:
+The extension supports all 80+ mdbook-lint rules across three categories:
 
 ### Standard Rules (MD001-MD059)
+55 markdownlint-compatible rules for general markdown quality:
 - **MD001**: Heading levels should only increment by one level at a time
 - **MD013**: Line length restrictions
 - **MD040**: Fenced code blocks should have a language tag
-- And 56 more...
+- And many more...
 
-### mdBook Rules (MDBOOK001-007)
+### mdBook Rules (MDBOOK001-025)
+18 rules specific to mdBook projects:
 - **MDBOOK001**: Fenced code blocks should have language tags
 - **MDBOOK002**: Relative links should point to existing files
 - **MDBOOK003**: SUMMARY.md structure validation
@@ -96,6 +100,17 @@ The extension supports all mdbook-lint rules:
 - **MDBOOK005**: Orphaned files detection
 - **MDBOOK006**: Cross-reference link validation
 - **MDBOOK007**: Include file validation
+- And more for Rust code blocks, templates, and mdBook directives...
+
+### Content Rules (CONTENT001-011)
+10 rules for documentation quality:
+- **CONTENT001**: No TODO/FIXME comments
+- **CONTENT002**: No placeholder text
+- **CONTENT003**: Minimum chapter content
+- **CONTENT006**: No broken internal links
+- **CONTENT007**: Consistent terminology
+- **CONTENT010**: Link text quality (no "click here")
+- **CONTENT011**: Use present tense in documentation
 
 ## mdBook Project Features
 

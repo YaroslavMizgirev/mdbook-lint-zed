@@ -1,8 +1,8 @@
 [extension]
 id = "mdbook-lint"
 name = "mdbook-lint"
-description = "Fast markdown linter for mdBook projects with real-time LSP support"
-version = "0.1.0"
+description = "Markdown linter with 80+ rules including mdBook-specific checks and real-time LSP support"
+version = "0.2.0"
 schema_version = 1
 authors = ["Josh Rotenberg <joshrotenberg@gmail.com>"]
 repository = "https://github.com/joshrotenberg/mdbook-lint-zed"
