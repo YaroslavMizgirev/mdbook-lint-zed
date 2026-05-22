@@ -1,4 +1,3 @@
-[extension]
 id = "mdbook-lint"
 name = "mdbook-lint"
 description = "Markdown linter with 80+ rules including mdBook-specific checks and real-time LSP support"

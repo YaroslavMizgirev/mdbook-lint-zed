@@ -49,8 +49,19 @@ impl zed::Extension for MdBookLintExtension {
         let is_mdbook_project = worktree.read_text_file("book.toml").is_ok()
             || worktree.read_text_file("SUMMARY.md").is_ok();
 
+        // Look for mdbook-lint configuration files
+        let config_path = [
+            ".mdbook-lint.toml",
+            ".mdbook-lint.yaml",
+            ".mdbook-lint.json",
+        ]
+        .iter()
+        .find(|&&path| worktree.read_text_file(path).is_ok())
+        .map(|&path| format!("{}/{}", worktree.root_path(), path));
+
         Ok(Some(serde_json::json!({
-            "mdBookProject": is_mdbook_project
+            "mdBookProject": is_mdbook_project,
+            "configPath": config_path
         })))
     }
 
@@ -64,10 +75,14 @@ impl zed::Extension for MdBookLintExtension {
         }
 
         // Look for mdbook-lint configuration files
-        let config_path = ["mdbook-lint.toml", "mdbook-lint.yaml", "mdbook-lint.json"]
-            .iter()
-            .find(|&&path| worktree.read_text_file(path).is_ok())
-            .map(|&path| path.to_string());
+        let config_path = [
+            ".mdbook-lint.toml",
+            ".mdbook-lint.yaml",
+            ".mdbook-lint.json",
+        ]
+        .iter()
+        .find(|&&path| worktree.read_text_file(path).is_ok())
+        .map(|&path| format!("{}/{}", worktree.root_path(), path));
 
         Ok(Some(serde_json::json!({
             "configPath": config_path
